@@ -129,7 +129,11 @@ A non-crashing parser that audits raw JSON inputs row-by-row:
 
 ### 📈 Stage 2: Anomaly Detector (`detector.py`)
 Protects baselines from leakage, ensuring historical spikes never dilute rolling thresholds:
-* **Latency Engine**: Computes rolling mean ($\mu$) and sample standard deviation ($\sigma$). Flags anomalies when latency exceeds $\mu + 2\sigma$. In zero-variance baselines, falls back to $5 \times \mu$.
+* **Latency Engine**: Computes isolated baselines by splitting logs per endpoint into two disjoint segments:
+  * **Historical Baseline Window**: `older_half` (first 50% of chronological logs) where rolling mean ($\mu$) and sample standard deviation ($\sigma$) are calculated.
+  * **Recent Evaluation Window**: `newer_half` (last 50% of chronological logs) where peak latency is evaluated.
+  * **Thresholds**: Triggered when the peak latency in the `newer_half` exceeds $\mu + 2\sigma$ (or $5 \times \mu$ under zero-variance baselines).
+  * **SRE Ratio Filter Guard**: Bypasses low-variance, minor latency increases by strictly requiring a relative increase ratio $\ge 2.0$ (WARNING floor) before flagging.
 * **Error Rate Engine**: Evaluates trailing 50-request windows split into two **disjoint** (non-overlapping) segments:
   * **Historical Baseline Window**: `window[:-10]` — 40 logs preceding the current state.
   * **Recent State Window**: `window[-10:]` — the last 10 logs.
