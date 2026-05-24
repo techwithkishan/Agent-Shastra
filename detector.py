@@ -32,9 +32,12 @@ def detect_anomalies(logs: list[dict]) -> list[dict]:
     """
     anomalies = []
 
-    # Group logs by endpoint in chronological order
+    # SORT FIRST. Always. Logs from real systems arrive out of order.
+    logs_sorted = sorted(logs, key=lambda x: x["timestamp"])
+
+    # NOW group by endpoint — order is now chronological
     logs_by_endpoint = defaultdict(list)
-    for log in logs:
+    for log in logs_sorted:
         logs_by_endpoint[log["endpoint"]].append(log)
 
     for endpoint, ep_logs in logs_by_endpoint.items():
