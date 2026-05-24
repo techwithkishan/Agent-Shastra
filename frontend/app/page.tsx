@@ -1676,10 +1676,14 @@ export default function Home() {
           </div>
 
           {/* Grid Layout for Challenge and Advantages */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-20">
 
             {/* Left: Challenge We Solve */}
-            <div className="flex flex-col gap-5 text-left font-mono">
+            <div className={`p-6 md:p-8 rounded-2xl border text-left font-mono flex flex-col gap-5 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl ${
+              theme === "dark"
+                ? "bg-neutral-950/30 border-neutral-800/80 hover:border-red-500/50 hover:shadow-[0_4px_30px_rgba(239,68,68,0.08)]"
+                : "bg-slate-50/40 border-slate-200/80 hover:border-red-400 hover:shadow-[0_4px_30px_rgba(239,68,68,0.04)] shadow-sm"
+            }`}>
               <div className={`inline-flex items-center gap-1.5 self-start rounded-full border px-3 py-1 text-[10px] font-bold tracking-widest ${theme === "dark"
                   ? "border-red-500/20 bg-red-500/5 text-red-400"
                   : "border-red-200 bg-red-50 text-red-650"
@@ -1701,7 +1705,11 @@ export default function Home() {
             </div>
 
             {/* Right: How Agent Shastra Solves It */}
-            <div className="flex flex-col gap-5 text-left font-mono">
+            <div className={`p-6 md:p-8 rounded-2xl border text-left font-mono flex flex-col gap-5 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl ${
+              theme === "dark"
+                ? "bg-neutral-950/30 border-neutral-800/80 hover:border-emerald-500/50 hover:shadow-[0_4px_30px_rgba(16,185,129,0.08)]"
+                : "bg-slate-50/40 border-slate-200/80 hover:border-emerald-400 hover:shadow-[0_4px_30px_rgba(16,185,129,0.04)] shadow-sm"
+            }`}>
               <div className={`inline-flex items-center gap-1.5 self-start rounded-full border px-3 py-1 text-[10px] font-bold tracking-widest ${theme === "dark"
                   ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-400"
                   : "border-emerald-200 bg-emerald-50 text-emerald-700"
@@ -1744,12 +1752,13 @@ export default function Home() {
               }`}>
               Engine <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Architecture</span> Components
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
-              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 ${theme === "dark"
-                  ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
-                  : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
-                }`}>
+              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.06)] shadow-sm"
+              }`}>
                 <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">01 · AUDIT</div>
                 <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Resilient Log Parsing</h4>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
@@ -1757,10 +1766,11 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 ${theme === "dark"
-                  ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
-                  : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
-                }`}>
+              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.06)] shadow-sm"
+              }`}>
                 <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">02 · DETECT</div>
                 <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Variance-Protected Baselines</h4>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
@@ -1768,10 +1778,11 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 ${theme === "dark"
-                  ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
-                  : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
-                }`}>
+              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.06)] shadow-sm"
+              }`}>
                 <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">03 · CLUSTER</div>
                 <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Chronological Correlator</h4>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
@@ -1779,10 +1790,11 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 ${theme === "dark"
-                  ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
-                  : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
-                }`}>
+              <div className={`p-5 rounded-xl border text-left font-mono flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.1)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.06)] shadow-sm"
+              }`}>
                 <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">04 · SOLVE</div>
                 <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Multi-Model Debugging</h4>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
@@ -1799,9 +1811,12 @@ export default function Home() {
               }`}>
               Operator's <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Playbook</span> Workflow
             </h3>
-            <div className={`p-8 rounded-xl border text-left font-mono flex flex-col gap-6 transition-all duration-300 ${theme === "dark" ? "border-neutral-900 bg-neutral-950/20" : "border-slate-150 bg-slate-50/50"
+            <div className="flex flex-col gap-4">
+              <div className={`p-5 rounded-xl border text-left font-mono flex items-start gap-4 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
               }`}>
-              <div className="flex items-start gap-4">
                 <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 01</span>
                 <div>
                   <h4 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Load Incident Context</h4>
@@ -1810,7 +1825,12 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
+
+              <div className={`p-5 rounded-xl border text-left font-mono flex items-start gap-4 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
+              }`}>
                 <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 02</span>
                 <div>
                   <h4 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Boot SRE Telemetry Kernel</h4>
@@ -1819,7 +1839,12 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
+
+              <div className={`p-5 rounded-xl border text-left font-mono flex items-start gap-4 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
+              }`}>
                 <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 03</span>
                 <div>
                   <h4 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Analyze Consolidated Findings</h4>
@@ -1828,7 +1853,12 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-4">
+
+              <div className={`p-5 rounded-xl border text-left font-mono flex items-start gap-4 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-800/80 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-slate-50/50 border-slate-200 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
+              }`}>
                 <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 04</span>
                 <div>
                   <h4 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Complete Actionable playbooks</h4>
@@ -1842,33 +1872,52 @@ export default function Home() {
 
           {/* Section: Frequently Asked Questions */}
           <div className={`p-8 rounded-2xl border transition-all duration-300 ${theme === "dark"
-              ? "border-neutral-900 bg-neutral-950/20"
-              : "border-slate-200 bg-slate-50/50 shadow-sm"
+              ? "border-neutral-800/80 bg-neutral-950/20"
+              : "border-slate-200 bg-slate-50/30 shadow-sm"
             }`}>
             <h3 className={`text-2xl font-bold font-mono text-left mb-6 border-b pb-3 ${theme === "dark" ? "border-neutral-900 text-neutral-300" : "border-slate-100 text-slate-800"
               }`}>
               Frequently Asked <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Questions</span>
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left font-mono">
-              <div className="flex flex-col gap-2">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left font-mono">
+              <div className={`p-5 rounded-xl border flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-900 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-white border-slate-150 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
+              }`}>
                 <h5 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: How is standard deviation baseline leakage avoided?</h5>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
                   A: Spikes are identified by evaluating logs in isolated intervals. Spikes are immediately segmented and never added back to baseline calculation pools, ensuring thresholds remain highly clean.
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
+
+              <div className={`p-5 rounded-xl border flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-900 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-white border-slate-150 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
+              }`}>
                 <h5 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: How are downstream dependencies correlated?</h5>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
                   A: The sliding-window grouper checks timestamp proximity. When a payment-api spike happens within 120s of an auth failure, the kernel aggregates them, highlighting co-dependency.
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
+
+              <div className={`p-5 rounded-xl border flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-900 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-white border-slate-150 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
+              }`}>
                 <h5 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: Does this require an active network gateway connection?</h5>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
                   A: No. The offline fallback diagnostics engine operates completely on locally mapped dependency rules, executing with peak efficiency without requiring public key configs.
                 </p>
               </div>
-              <div className="flex flex-col gap-2">
+
+              <div className={`p-5 rounded-xl border flex flex-col gap-2 transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-md ${
+                theme === "dark"
+                  ? "bg-neutral-950/40 border-neutral-900 hover:border-indigo-500/50 hover:shadow-[0_4px_20px_rgba(99,102,241,0.08)]"
+                  : "bg-white border-slate-150 hover:border-indigo-400 hover:shadow-[0_4px_20px_rgba(99,102,241,0.04)] shadow-sm"
+              }`}>
                 <h5 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: Can I load high-frequency production payloads?</h5>
                 <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
                   A: Absolutely. The backend parsers and sliding-window grouping engines are implemented in highly-efficient O(N log N) formats, capable of evaluating thousands of rows under milliseconds.
