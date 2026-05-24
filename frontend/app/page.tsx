@@ -574,20 +574,20 @@ export default function Home() {
 
       <div className={`relative min-h-screen transition-colors duration-300 font-sans antialiased ${theme === "dark"
           ? "bg-[#040406] text-neutral-200 selection:bg-neutral-800 selection:text-white"
-          : "bg-slate-50 text-slate-800 selection:bg-slate-200 selection:text-slate-900"
+          : "bg-[#f4f4f6] text-zinc-800 selection:bg-zinc-200 selection:text-zinc-900"
         }`}>
 
       {/* FULL-PAGE ANIMATED GRID BACKGROUND */}
       <div
         className="fixed inset-0 z-0 pointer-events-none animate-grid-move transition-all"
         style={{
-          backgroundColor: theme === "dark" ? "#040406" : "#f8fafc",
+          backgroundColor: theme === "dark" ? "#040406" : "#f4f4f6",
           opacity: 1,
           backgroundImage: theme === "dark"
             ? `linear-gradient(to right, rgba(99, 102, 241, 0.12) 1px, transparent 1px),
                linear-gradient(to bottom, rgba(99, 102, 241, 0.12) 1px, transparent 1px)`
-            : `linear-gradient(to right, rgba(99, 102, 241, 0.14) 1px, transparent 1px),
-               linear-gradient(to bottom, rgba(99, 102, 241, 0.14) 1px, transparent 1px)`,
+            : `linear-gradient(to right, rgba(99, 102, 241, 0.10) 1px, transparent 1px),
+               linear-gradient(to bottom, rgba(99, 102, 241, 0.10) 1px, transparent 1px)`,
           backgroundSize: "48px 48px",
         }}
       />

@@ -112,43 +112,43 @@ h1, h2, h3, h4, h5, h6 {
 
 .light {
   body {
-    background-color: #f8fafc !important;
-    color: #1e293b !important;
+    background-color: #f4f4f5 !important; /* Warm Zinc Off-White */
+    color: #18181b !important; /* Soft Charcoal */
   }
 
   /* Override specific dark backgrounds with light counterparts */
   .bg-\[\#040406\], .bg-\[\#070708\] {
-    background-color: #f8fafc !important;
+    background-color: #f4f4f5 !important;
   }
 
-  /* Text color overrides */
+  /* Text color overrides to reduce high-contrast glare */
   .text-white {
-    color: #0f172a !important;
+    color: #09090b !important; /* Zinc-950 */
   }
   .text-neutral-200 {
-    color: #1e293b !important;
+    color: #18181b !important; /* Zinc-900 */
   }
   .text-neutral-350, .text-neutral-300 {
-    color: #334155 !important;
+    color: #27272a !important; /* Zinc-800 */
   }
   .text-neutral-400 {
-    color: #475569 !important;
+    color: #3f3f46 !important; /* Zinc-700 */
   }
   .text-neutral-500 {
-    color: #64748b !important;
+    color: #52525b !important; /* Zinc-600 */
   }
   .text-neutral-600 {
-    color: #94a3b8 !important;
+    color: #71717a !important; /* Zinc-500 */
   }
 
-  /* Card and section backgrounds */
+  /* Premium Card and section backgrounds - floating paper style */
   .bg-neutral-950\/20,
   .bg-neutral-950\/40,
   .bg-\[\#07070a\]\/40,
   .bg-\[\#07070a\]\/60 {
-    background-color: rgba(255, 255, 255, 0.8) !important;
-    border-color: #cbd5e1 !important;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+    background-color: #ffffff !important; /* Solid elegant pure white card */
+    border-color: #e4e4e7 !important; /* Soft Zinc-200 border */
+    box-shadow: 0 10px 30px -10px rgba(9, 9, 11, 0.04), 0 1px 3px rgba(9, 9, 11, 0.01) !important; /* Ambient depth shadow */
   }
 
   .border-neutral-900,
@@ -157,21 +157,21 @@ h1, h2, h3, h4, h5, h6 {
   .border-neutral-800\/80,
   .border-neutral-800,
   .border-neutral-850 {
-    border-color: #e2e8f0 !important;
+    border-color: #f4f4f5 !important; /* Softer card divider borders */
   }
 
   /* Preset select buttons unselected bg override */
   .bg-neutral-900\/40 {
-    background-color: #f1f5f9 !important;
+    background-color: #e4e4e7 !important;
   }
 
   .bg-neutral-900 {
-    background-color: #f1f5f9 !important;
-    color: #334155 !important;
+    background-color: #e4e4e7 !important;
+    color: #27272a !important;
   }
   
   .bg-neutral-900\/80 {
-    background-color: rgba(241, 245, 249, 0.8) !important;
+    background-color: rgba(228, 228, 231, 0.8) !important;
   }
 
   /* Preset status indicator badge active colors */
@@ -206,11 +206,11 @@ h1, h2, h3, h4, h5, h6 {
 
   /* Gradient text */
   .from-white {
-    --tw-gradient-from: #0f172a !important;
-    --tw-gradient-to: #475569 !important;
+    --tw-gradient-from: #09090b !important;
+    --tw-gradient-to: #3f3f46 !important;
   }
   .to-neutral-500 {
-    --tw-gradient-to: #64748b !important;
+    --tw-gradient-to: #52525b !important;
   }
 
   /* Inner terminal and SRE Live Telemetry Wave - keep dark for coding premium feel! */
@@ -222,7 +222,8 @@ h1, h2, h3, h4, h5, h6 {
   /* Header backdrop override */
   .bg-\[\#040406\]\/65 {
     background-color: rgba(255, 255, 255, 0.75) !important;
-    border-color: rgba(15, 23, 42, 0.08) !important;
+    border-color: rgba(24, 24, 27, 0.05) !important;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.01) !important;
   }
 
   /* Moving Grid overrides for white background compatibility */
