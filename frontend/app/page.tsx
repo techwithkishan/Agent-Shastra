@@ -649,25 +649,11 @@ export default function Home() {
               style={{ fontFamily: 'var(--font-accent)' }}
             >
               <button
-                onClick={() => scrollToSection("dashboard-section")}
-                className={`hover:text-indigo-400 cursor-pointer transition-colors tracking-widest uppercase ${theme === "dark" ? "text-neutral-400" : "text-slate-600"
-                  }`}
-              >
-                Workspace
-              </button>
-              <button
-                onClick={() => scrollToSection("telemetry-section")}
-                className={`hover:text-indigo-400 cursor-pointer transition-colors tracking-widest uppercase ${theme === "dark" ? "text-neutral-400" : "text-slate-600"
-                  }`}
-              >
-                Telemetry
-              </button>
-              <button
                 onClick={() => scrollToSection("about-section")}
                 className={`hover:text-indigo-400 cursor-pointer transition-colors tracking-widest uppercase ${theme === "dark" ? "text-neutral-400" : "text-slate-600"
                   }`}
               >
-                Guide
+                About Agent Shastra
               </button>
             </nav>
           </div>
@@ -740,10 +726,10 @@ export default function Home() {
                   ? "border-neutral-800 bg-neutral-900 text-neutral-400 hover:bg-neutral-850 hover:text-neutral-200"
                   : "border-slate-200 bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800"
                 }`}
-              title="Scroll to SRE Kernel About Guide & FAQs"
+              title="Scroll to SRE Kernel About & FAQs"
             >
               <BookOpen className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">About Guide</span>
+              <span className="hidden sm:inline">About</span>
             </button>
 
             {/* Dark / Light Mode Toggler */}
@@ -1674,16 +1660,18 @@ export default function Home() {
                 : "border-indigo-200 bg-indigo-50 text-indigo-700"
               }`}>
               <BookOpen className="h-3.5 w-3.5" />
-              <span>SRE GUIDE & CORE PROTOCOLS</span>
+              <span>THE RISE & NEED OF AGENT SHASTRA</span>
             </div>
 
             <h2 className={`text-3xl font-extrabold tracking-tight sm:text-4xl transition-all duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"
-              }`}>
-              Kernel <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Documentation</span> & Guide
+              }`}
+              style={{ fontFamily: 'var(--font-accent)' }}
+            >
+              Why <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Agent Shastra</span>?
             </h2>
-            <p className={`mt-3 text-xs font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-450"
+            <p className={`mt-3 text-[10px] font-mono tracking-widest uppercase ${theme === "dark" ? "text-neutral-500" : "text-slate-450"
               }`}>
-              DEEP ANALYSIS OF MICROSERVICE CORRELATION LOGS & ROOT CAUSE AI REASONING
+              RESOLVING MODERN ALERT FATIGUE WITH RELATIVE STATISTICAL INTELLIGENCE
             </p>
           </div>
 
@@ -1697,43 +1685,47 @@ export default function Home() {
                   : "border-red-200 bg-red-50 text-red-650"
                 }`}>
                 <Shield className="h-3 w-3 animate-pulse" />
-                <span>THE PRODUCTION DIAGNOSTIC CHALLENGE</span>
+                <span>THE PRODUCTION INCIDENT CRISIS (THE PROBLEM)</span>
               </div>
-              <h3 className={`text-lg font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>
-                Resolving Alert Storms & Co-dependent degradation
+              <h3 className={`text-lg font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}
+                style={{ fontFamily: 'var(--font-accent)' }}
+              >
+                Alert Fatigue & Cascading Failures
               </h3>
               <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
-                Microservices scaling under heavy loads create intricate failure vectors. A bottleneck in a database limit propagates downstream to gateways, triggering massive floods of noisy alarms. Traditional SRE tooling exposes alerts in silos, causing intense developer cognitive load.
+                In modern microservices under heavy load, failures cascade. A database limit bottleneck propagates downstream to gateways, triggering a massive storm of parallel alerts. SREs receive hundreds of alarms simultaneously.
               </p>
               <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
-                Agent Shastra resolves this exact problem: it automatically ingests unstructured log structures, isolates latency baseline noise, chronologically correlates multi-service co-occurrences, and translates these symptoms into clear, actionable debug check lists.
+                Engineers waste precious hours sorting through noisy duplicate alarms, attempting to correlate timestamps manually. The result is high MTTR (Mean Time to Resolution), business revenue leakage, and severe developer burnout.
               </p>
             </div>
 
-            {/* Right: Engineer & Production Value */}
+            {/* Right: How Agent Shastra Solves It */}
             <div className="flex flex-col gap-4 text-left font-mono">
               <div className={`inline-flex items-center gap-1.5 self-start rounded-full border px-2.5 py-0.5 text-[9px] font-bold ${theme === "dark"
                   ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-400"
                   : "border-emerald-200 bg-emerald-50 text-emerald-700"
                 }`}>
                 <Award className="h-3 w-3" />
-                <span>SRE PRODUCTION IMPACT & ADVANTAGES</span>
+                <span>INTELLIGENT SRE AUTOMATION (THE SOLUTION)</span>
               </div>
-              <h3 className={`text-lg font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>
-                Streamlining MTTR with Fallback Certainty
+              <h3 className={`text-lg font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}
+                style={{ fontFamily: 'var(--font-accent)' }}
+              >
+                Dynamic Noise Filtering & Correlation
               </h3>
               <div className="flex flex-col gap-4 mt-2">
                 <div className="flex gap-2.5">
                   <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="text-xs leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>90% Faster MTTR:</strong> Translates abstract, high-volume server traces into specific logical incidents with detailed root causes.</p>
+                  <p className="text-xs leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Automated Noise Cleanup:</strong> Employs strict validation and isolated standard deviation checking so raw telemetry never pollutes baseline averages.</p>
                 </div>
                 <div className="flex gap-2.5">
                   <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="text-xs leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Zero-Leakage Baseline Audits:</strong> Employs isolated variance analysis to calculate baseline means, ensuring spikes never bleed back to dilute thresholds.</p>
+                  <p className="text-xs leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Chronological Correlation:</strong> Grouping multi-service failures occurring within 120s of each other into a single actionable incident.</p>
                 </div>
                 <div className="flex gap-2.5">
                   <CheckCircle2 className="h-4 w-4 text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="text-xs leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>100% Air-Gapped Safe:</strong> Built to operate completely local and offline, guaranteeing corporate telemetry records never exit firewalls.</p>
+                  <p className="text-xs leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Root Cause Reasoning (Gemini):</strong> Invokes custom prompt-engineered LLMs to isolate symptoms, diagnose root causes, and generate click-to-copy playbooks instantly.</p>
                 </div>
               </div>
             </div>
