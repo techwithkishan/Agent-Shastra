@@ -1,6 +1,16 @@
-# 🛡️ Agent Shastra: API Failure Detection & Debugging Agent
+<p align="center">
+  <img src="./assets/logo_glow.svg" alt="Agent Shastra Cyberpunk Logo Banner" width="100%" />
+</p>
 
-**Owner & Creator**: Kishan Kumar
+<p align="center">
+  <img src="https://img.shields.io/badge/Agent%20Shastra-SRE%20Diagnostic%20Kernel-4F46E5?style=for-the-badge&logo=shield" alt="Agent Shastra" />
+  <img src="https://img.shields.io/badge/Model-Gemini%202.0%20Flash-0F9D58?style=for-the-badge&logo=google" alt="Gemini" />
+  <img src="https://img.shields.io/badge/Status-Kernel%20Online-10B981?style=for-the-badge" alt="Status" />
+</p>
+
+<p align="center">
+  <b>API Anomaly Detection & Root-Cause Resolution Engine</b> — Created by <b>Kishan Kumar</b>
+</p>
 
 ---
 
