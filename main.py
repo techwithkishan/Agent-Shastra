@@ -15,10 +15,10 @@ from pydantic import BaseModel
 
 app = FastAPI(title="API Failure Agent Bridge")
 
-# Enforce strict CORS to allow local Next.js frontend to talk to FastAPI
+# Allow both local dev and Vercel-deployed frontend
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # Covers localhost:3000, Vercel preview, and production URLs
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -114,5 +114,7 @@ async def analyze_logs(file: UploadFile = File(...)):
 
 if __name__ == "__main__":
     import uvicorn
-    # Run FastAPI app on local port 8000
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+    # Use 0.0.0.0 so Render (and other cloud hosts) can bind to the assigned PORT.
+    # Falls back to 8000 for local development.
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

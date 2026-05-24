@@ -469,8 +469,10 @@ export default function Home() {
     const formData = new FormData();
     formData.append("file", activeFile);
 
+    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+
     try {
-      const response = await fetch("http://127.0.0.1:8000/analyze", {
+      const response = await fetch(`${apiUrl}/analyze`, {
         method: "POST",
         body: formData,
         signal: abortControllerRef.current.signal,
@@ -493,7 +495,7 @@ export default function Home() {
       console.error(err);
       setResult({
         success: false,
-        message: "Failed to connect to FastAPI bridge. Ensure 'python main.py' is running on port 8000.",
+        message: "Backend not reachable. To run the full pipeline, start the FastAPI server locally with 'python main.py' and open http://localhost:3000. The Vercel deployment hosts the frontend UI only.",
       });
     }
   };
