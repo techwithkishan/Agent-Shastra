@@ -1,0 +1,22 @@
+[
+  {"timestamp": "2024-06-15T10:00:00Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.0, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:00:10Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 46.1, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:00:20Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 44.8, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:00:30Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.5, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:00:40Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 44.9, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:00:50Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.2, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:01:00Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 46.0, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:01:10Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.7, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:01:20Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 44.5, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:01:30Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.1, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:01:40Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 46.3, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:01:50Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 44.7, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:02:00Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.9, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:02:10Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.0, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:02:20Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.4, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:02:30Z", "endpoint": "/auth/login", "status": 500, "latency_ms": 48.0, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:02:40Z", "endpoint": "/auth/login", "status": 500, "latency_ms": 47.5, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:02:50Z", "endpoint": "/auth/login", "status": 500, "latency_ms": 48.2, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:03:00Z", "endpoint": "/auth/login", "status": 500, "latency_ms": 47.9, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:03:10Z", "endpoint": "/auth/login", "status": 500, "latency_ms": 48.1, "service": "auth-service"}
+]

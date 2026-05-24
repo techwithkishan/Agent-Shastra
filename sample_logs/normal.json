@@ -1,0 +1,14 @@
+[
+  {"timestamp": "2024-06-15T10:00:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 100.5, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:00:05Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.2, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:01:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 102.3, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:01:05Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 47.1, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:02:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 99.1, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:02:05Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 46.8, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:03:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 101.4, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:03:05Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 44.9, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:04:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 98.7, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:04:05Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 45.6, "service": "auth-service"},
+  {"timestamp": "2024-06-15T10:05:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 100.2, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:05:05Z", "endpoint": "/auth/login", "status": 200, "latency_ms": 46.0, "service": "auth-service"}
+]

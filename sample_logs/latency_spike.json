@@ -1,0 +1,13 @@
+[
+  {"timestamp": "2024-06-15T10:00:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 100.2, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:01:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 101.5, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:02:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 99.8, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:03:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 98.5, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:04:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 100.9, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:05:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 102.1, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:06:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 99.4, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:07:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 100.6, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:08:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 101.2, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:09:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 98.9, "service": "payment-api"},
+  {"timestamp": "2024-06-15T10:10:00Z", "endpoint": "/payment/process", "status": 200, "latency_ms": 2500.0, "service": "payment-api"}
+]

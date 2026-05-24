@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+:root {
+  --background: #060608;
+  --foreground: #ececed;
+
+  /* Font stacks */
+  --font-serif:  'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-sans:   'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-accent: 'Outfit', system-ui, -apple-system, sans-serif;
+
+  /* Legacy aliases kept for backward-compat */
+  --font-body:    var(--font-sans);
+  --font-display: var(--font-serif);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans:    var(--font-sans);
+  --font-serif:   var(--font-serif);
+  --font-accent:  var(--font-accent);
+  --font-display: var(--font-serif);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+}
+
+/* Global heading typography — Playfair Display */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+}
+
+/* ------------------------------------------------------------------------------
+   CUSTOM SRE / PRODUCTION ANIMATIONS
+   ------------------------------------------------------------------------------ */
+
+/* Moving grid background */
+@keyframes grid-move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 48px 48px;
+  }
+}
+
+.animate-grid-move {
+  animation: grid-move 20s linear infinite;
+}
+
+/* SRE Radar radar wave pulse */
+@keyframes radar-pulse {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.6);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.animate-radar-pulse {
+  animation: radar-pulse 3s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+}
+
+/* Glowing slow border shift */
+@keyframes border-glow {
+  0%, 100% {
+    border-color: rgba(99, 102, 241, 0.25);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.05);
+  }
+  50% {
+    border-color: rgba(239, 68, 68, 0.25);
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.08);
+  }
+}
+
+.animate-border-glow {
+  animation: border-glow 8s ease-in-out infinite;
+}
+
+/* Waveflow dash offsets */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -40;
+  }
+}
+
+.animate-dash {
+  stroke-dasharray: 5, 5;
+  animation: dash 2s linear infinite;
+}
+
+/* ------------------------------------------------------------------------------
+   LIGHT MODE STYLING OVERRIDES (PREMIUM DESIGN SYSTEM)
+   ------------------------------------------------------------------------------ */
+
+.light {
+  body {
+    background-color: #f8fafc !important;
+    color: #1e293b !important;
+  }
+
+  /* Override specific dark backgrounds with light counterparts */
+  .bg-\[\#040406\], .bg-\[\#070708\] {
+    background-color: #f8fafc !important;
+  }
+
+  /* Text color overrides */
+  .text-white {
+    color: #0f172a !important;
+  }
+  .text-neutral-200 {
+    color: #1e293b !important;
+  }
+  .text-neutral-350, .text-neutral-300 {
+    color: #334155 !important;
+  }
+  .text-neutral-400 {
+    color: #475569 !important;
+  }
+  .text-neutral-500 {
+    color: #64748b !important;
+  }
+  .text-neutral-600 {
+    color: #94a3b8 !important;
+  }
+
+  /* Card and section backgrounds */
+  .bg-neutral-950\/20,
+  .bg-neutral-950\/40,
+  .bg-\[\#07070a\]\/40,
+  .bg-\[\#07070a\]\/60 {
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    border-color: #cbd5e1 !important;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  .border-neutral-900,
+  .border-neutral-900\/60,
+  .border-neutral-800\/40,
+  .border-neutral-800\/80,
+  .border-neutral-800,
+  .border-neutral-850 {
+    border-color: #e2e8f0 !important;
+  }
+
+  /* Preset select buttons unselected bg override */
+  .bg-neutral-900\/40 {
+    background-color: #f1f5f9 !important;
+  }
+
+  .bg-neutral-900 {
+    background-color: #f1f5f9 !important;
+    color: #334155 !important;
+  }
+  
+  .bg-neutral-900\/80 {
+    background-color: rgba(241, 245, 249, 0.8) !important;
+  }
+
+  /* Preset status indicator badge active colors */
+  .text-emerald-400 {
+    color: #059669 !important;
+  }
+  .bg-emerald-500\/10 {
+    background-color: #ecfdf5 !important;
+    border-color: rgba(5, 150, 105, 0.2) !important;
+  }
+  .text-red-400 {
+    color: #dc2626 !important;
+  }
+  .bg-red-500\/10 {
+    background-color: #fef2f2 !important;
+    border-color: rgba(220, 38, 38, 0.2) !important;
+  }
+  .text-amber-400 {
+    color: #d97706 !important;
+  }
+  .bg-amber-500\/10 {
+    background-color: #fffbeb !important;
+    border-color: rgba(217, 119, 6, 0.2) !important;
+  }
+  .text-indigo-400 {
+    color: #4f46e5 !important;
+  }
+  .bg-indigo-500\/10, .bg-indigo-500\/5 {
+    background-color: #e0e7ff !important;
+    border-color: rgba(79, 70, 229, 0.2) !important;
+  }
+
+  /* Gradient text */
+  .from-white {
+    --tw-gradient-from: #0f172a !important;
+    --tw-gradient-to: #475569 !important;
+  }
+  .to-neutral-500 {
+    --tw-gradient-to: #64748b !important;
+  }
+
+  /* Inner terminal and SRE Live Telemetry Wave - keep dark for coding premium feel! */
+  .bg-black\/80, .bg-black\/10, .bg-black\/15 {
+    background-color: #0f172a !important;
+    border-color: #1e293b !important;
+  }
+
+  /* Header backdrop override */
+  .bg-\[\#040406\]\/65 {
+    background-color: rgba(255, 255, 255, 0.75) !important;
+    border-color: rgba(15, 23, 42, 0.08) !important;
+  }
+
+  /* Moving Grid overrides for white background compatibility */
+  .opacity-35 {
+    opacity: 0.85 !important;
+  }
+  .animate-grid-move {
+    background-image: 
+      linear-gradient(to right, rgba(99, 102, 241, 0.14) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.14) 1px, transparent 1px) !important;
+  }
+
+  /* Topology Node Line connectors */
+  path[stroke="#1f1f2e"] {
+    stroke: #e2e8f0 !important;
+  }
+}
+
+/* ------------------------------------------------------------------------------
+   PREMIUM MOTION ANIMATION KEYFRAMES
+   ------------------------------------------------------------------------------ */
+
+/* Scroll indicator animation */
+@keyframes scroll-down {
+  0% {
+    transform: translateY(-100%);
+  }
+  100% {
+    transform: translateY(200%);
+  }
+}
+
+.animate-scroll-down {
+  animation: scroll-down 1.5s ease-in-out infinite;
+}
+
+/* Smooth content item fade-in sliding */
+@keyframes role-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-role-fade-in {
+  animation: role-fade-in 0.4s ease-out forwards;
+}
+
+/* Color shifting borders */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 6s ease infinite;
+}

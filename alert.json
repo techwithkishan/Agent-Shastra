@@ -1,0 +1,29 @@
+{
+  "alert_id": "2026-05-24-001",
+  "generated_at": "2026-05-24T13:56:13.579201Z",
+  "total_incidents": 1,
+  "severity": "CRITICAL",
+  "incidents": [
+    {
+      "group_id": "6afe89eb1598098c257eff4c3ad5b0a61ce7cb56",
+      "endpoint": "/payment/process",
+      "failure_type": "latency_spike",
+      "severity": "CRITICAL",
+      "occurrences": 1,
+      "first_seen": "2024-06-15T10:10:00Z",
+      "last_seen": "2024-06-15T10:10:00Z",
+      "likely_causes": [
+        "Likely: database connection pool exhaustion \u2014 check active connections",
+        "Likely: slow query or lock contention \u2014 review recent slow query logs",
+        "Likely: downstream service degradation \u2014 verify dependencies are healthy"
+      ],
+      "recommended_actions": [
+        "Scale database connection pool limits or kill long-running transactions",
+        "Verify Slow Query Logs in PostgreSQL/MySQL and check database CPU usage",
+        "Perform network ping/health checks on third-party payment gateways and downstream APIs"
+      ],
+      "baseline_ms": 100.31,
+      "peak_ms": 2500.0
+    }
+  ]
+}
