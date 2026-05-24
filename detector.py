@@ -103,36 +103,41 @@ def detect_anomalies(logs: list[dict]) -> list[dict]:
             baseline_window = window[:-10]
             current_window = window[-10:]
 
+            # If we don't have enough baseline history, we still evaluate absolute error rate
+            baseline_errors = sum(1 for l in baseline_window if int(l["status"]) >= 500) if len(baseline_window) > 0 else 0
+            current_errors = sum(1 for l in current_window if int(l["status"]) >= 500)
+
+            baseline_rate = (baseline_errors / len(baseline_window)) if len(baseline_window) > 0 else 0.0
+            current_rate = current_errors / len(current_window)
+
+            is_spike = False
             if len(baseline_window) >= 5:
-                baseline_errors = sum(1 for l in baseline_window if int(l["status"]) >= 500)
-                current_errors = sum(1 for l in current_window if int(l["status"]) >= 500)
-
-                baseline_rate = baseline_errors / len(baseline_window)
-                current_rate = current_errors / len(current_window)
-
                 is_spike = (
                     current_rate > config.ERROR_RATE_THRESHOLD or
                     current_rate > (baseline_rate + config.ERROR_RATE_DELTA)
                 )
+            else:
+                # With under-sampled baseline, trigger strictly on the absolute error threshold
+                is_spike = current_rate > config.ERROR_RATE_THRESHOLD
 
-                if is_spike:
-                    if current_rate >= 0.20:
-                        severity = "CRITICAL"
-                    elif current_rate >= 0.10:
-                        severity = "HIGH"
-                    elif current_rate >= 0.05:
-                        severity = "WARNING"
-                    else:
-                        severity = "WARNING"
+            if is_spike:
+                if current_rate >= 0.20:
+                    severity = "CRITICAL"
+                elif current_rate >= 0.10:
+                    severity = "HIGH"
+                elif current_rate >= 0.05:
+                    severity = "WARNING"
+                else:
+                    severity = "WARNING"
 
-                    anomalies.append({
-                        "type": "error_rate_spike",
-                        "endpoint": endpoint,
-                        "baseline": round(baseline_rate * 100, 2),  # Represent as percentage
-                        "current": round(current_rate * 100, 2),
-                        "severity": severity,
-                        "timestamp": current_log["timestamp"],
-                        "affected_count": current_errors
-                    })
+                anomalies.append({
+                    "type": "error_rate_spike",
+                    "endpoint": endpoint,
+                    "baseline": round(baseline_rate * 100, 2),  # Represent as percentage
+                    "current": round(current_rate * 100, 2),
+                    "severity": severity,
+                    "timestamp": current_log["timestamp"],
+                    "affected_count": current_errors
+                })
 
     return anomalies
