@@ -469,7 +469,11 @@ export default function Home() {
     const formData = new FormData();
     formData.append("file", activeFile);
 
-    const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://127.0.0.1:8000";
+    const apiUrl =
+      process.env.NEXT_PUBLIC_API_URL ||
+      (typeof window !== "undefined" && window.location.hostname === "localhost" && window.location.port === "3000"
+        ? "http://127.0.0.1:8000"
+        : "");
 
     try {
       const response = await fetch(`${apiUrl}/analyze`, {
@@ -495,7 +499,7 @@ export default function Home() {
       console.error(err);
       setResult({
         success: false,
-        message: "Backend not reachable. To run the full pipeline, start the FastAPI server locally with 'python main.py' and open http://localhost:3000. The Vercel deployment hosts the frontend UI only.",
+        message: "Backend server not reachable. Please verify that the API server is running and accessible.",
       });
     }
   };

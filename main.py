@@ -11,6 +11,7 @@ import shutil
 import tempfile
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 app = FastAPI(title="API Failure Agent Bridge")
@@ -111,6 +112,10 @@ async def analyze_logs(file: UploadFile = File(...)):
                 os.remove(temp_file_path)
             except Exception:
                 pass
+
+# Mount the Next.js static build directory to serve the frontend directly
+if os.path.exists("frontend/out"):
+    app.mount("/", StaticFiles(directory="frontend/out", html=True), name="static")
 
 if __name__ == "__main__":
     import uvicorn
