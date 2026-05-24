@@ -1654,78 +1654,78 @@ export default function Home() {
         <div className="relative z-20 mx-auto max-w-5xl px-6">
 
           {/* Section Title */}
-          <div className="text-center mb-16">
-            <div className={`inline-flex items-center gap-1.5 rounded-full border px-3 py-1 text-[10px] font-mono tracking-wide mb-4 ${theme === "dark"
+          <div className="text-center mb-20">
+            <div className={`inline-flex items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-mono tracking-widest uppercase mb-4 ${theme === "dark"
                 ? "border-indigo-500/15 bg-indigo-500/5 text-indigo-400"
                 : "border-indigo-200 bg-indigo-50 text-indigo-700"
               }`}>
-              <BookOpen className="h-3.5 w-3.5" />
+              <BookOpen className="h-4 w-4" />
               <span>THE RISE & NEED OF AGENT SHASTRA</span>
             </div>
 
-            <h2 className={`text-3xl font-extrabold tracking-tight sm:text-4xl transition-all duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"
+            <h2 className={`text-4xl font-extrabold tracking-tight sm:text-5xl transition-all duration-300 ${theme === "dark" ? "text-white" : "text-slate-900"
               }`}
               style={{ fontFamily: 'var(--font-accent)' }}
             >
               Why <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Agent Shastra</span>?
             </h2>
-            <p className={`mt-3 text-[10px] font-mono tracking-widest uppercase ${theme === "dark" ? "text-neutral-500" : "text-slate-450"
+            <p className={`mt-4 text-xs sm:text-sm font-mono tracking-widest uppercase ${theme === "dark" ? "text-neutral-500" : "text-slate-450"
               }`}>
               RESOLVING MODERN ALERT FATIGUE WITH RELATIVE STATISTICAL INTELLIGENCE
             </p>
           </div>
 
           {/* Grid Layout for Challenge and Advantages */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
 
             {/* Left: Challenge We Solve */}
-            <div className="flex flex-col gap-4 text-left font-mono">
-              <div className={`inline-flex items-center gap-1.5 self-start rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${theme === "dark"
+            <div className="flex flex-col gap-5 text-left font-mono">
+              <div className={`inline-flex items-center gap-1.5 self-start rounded-full border px-3 py-1 text-[10px] font-bold tracking-widest ${theme === "dark"
                   ? "border-red-500/20 bg-red-500/5 text-red-400"
                   : "border-red-200 bg-red-50 text-red-650"
                 }`}>
-                <Shield className="h-3 w-3 animate-pulse" />
+                <Shield className="h-3.5 w-3.5 animate-pulse" />
                 <span>THE PRODUCTION INCIDENT CRISIS (THE PROBLEM)</span>
               </div>
-              <h3 className={`text-xl font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}
+              <h3 className={`text-2xl font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}
                 style={{ fontFamily: 'var(--font-accent)' }}
               >
                 Alert Fatigue & Cascading Failures
               </h3>
-              <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
+              <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
                 In modern microservices under heavy load, failures cascade. A database limit bottleneck propagates downstream to gateways, triggering a massive storm of parallel alerts. SREs receive hundreds of alarms simultaneously.
               </p>
-              <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
+              <p className={`text-base leading-relaxed font-sans ${theme === "dark" ? "text-neutral-400" : "text-slate-650"}`}>
                 Engineers waste precious hours sorting through noisy duplicate alarms, attempting to correlate timestamps manually. The result is high MTTR (Mean Time to Resolution), business revenue leakage, and severe developer burnout.
               </p>
             </div>
 
             {/* Right: How Agent Shastra Solves It */}
-            <div className="flex flex-col gap-4 text-left font-mono">
-              <div className={`inline-flex items-center gap-1.5 self-start rounded-full border px-2.5 py-0.5 text-[10px] font-bold ${theme === "dark"
+            <div className="flex flex-col gap-5 text-left font-mono">
+              <div className={`inline-flex items-center gap-1.5 self-start rounded-full border px-3 py-1 text-[10px] font-bold tracking-widest ${theme === "dark"
                   ? "border-emerald-500/20 bg-emerald-500/5 text-emerald-400"
                   : "border-emerald-200 bg-emerald-50 text-emerald-700"
                 }`}>
-                <Award className="h-3 w-3" />
+                <Award className="h-3.5 w-3.5" />
                 <span>INTELLIGENT SRE AUTOMATION (THE SOLUTION)</span>
               </div>
-              <h3 className={`text-xl font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}
+              <h3 className={`text-2xl font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}
                 style={{ fontFamily: 'var(--font-accent)' }}
               >
                 Dynamic Noise Filtering & Correlation
               </h3>
-              <div className="flex flex-col gap-4 mt-2">
-                <div className="flex gap-2.5">
-                  <CheckCircle2 className="h-4.5 w-4.5 text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="text-sm leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Automated Noise Cleanup:</strong> Employs strict validation and isolated standard deviation checking so raw telemetry never pollutes baseline averages.</p>
+              <div className="flex flex-col gap-5 mt-2">
+                <div className="flex gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                  <p className="text-base leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Automated Noise Cleanup:</strong> Employs strict validation and isolated standard deviation checking so raw telemetry never pollutes baseline averages.</p>
                 </div>
-                <div className="flex gap-2.5">
-                  <CheckCircle2 className="h-4.5 w-4.5 text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="text-sm leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Chronological Correlation:</strong> Grouping multi-service failures occurring within 120s of each other into a single actionable incident.</p>
+                <div className="flex gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                  <p className="text-base leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Chronological Correlation:</strong> Grouping multi-service failures occurring within 120s of each other into a single actionable incident.</p>
                 </div>
-                <div className="flex gap-2.5">
-                  <CheckCircle2 className="h-4.5 w-4.5 text-emerald-500 shrink-0 mt-0.5" />
-                  <p className="text-sm leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Root Cause Reasoning (Gemini):</strong> Invokes custom prompt-engineered LLMs to isolate symptoms, diagnose root causes, and generate click-to-copy playbooks instantly.</p>
+                <div className="flex gap-3">
+                  <CheckCircle2 className="h-5 w-5 text-emerald-500 shrink-0 mt-0.5" />
+                  <p className="text-base leading-relaxed font-sans"><strong className={theme === "dark" ? "text-neutral-300" : "text-slate-700"}>Root Cause Reasoning (Gemini):</strong> Invokes custom prompt-engineered LLMs to isolate symptoms, diagnose root causes, and generate click-to-copy playbooks instantly.</p>
                 </div>
               </div>
             </div>
@@ -1734,7 +1734,7 @@ export default function Home() {
 
           {/* Section: Architecture Features */}
           <div className="mb-20">
-            <h3 className={`text-xl font-bold font-mono text-left mb-6 border-b pb-2 ${theme === "dark" ? "border-neutral-900 text-neutral-300" : "border-slate-100 text-slate-800"
+            <h3 className={`text-2xl font-bold font-mono text-left mb-6 border-b pb-3 ${theme === "dark" ? "border-neutral-900 text-neutral-300" : "border-slate-100 text-slate-800"
               }`}>
               Engine <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Architecture</span> Components
             </h3>
@@ -1744,9 +1744,9 @@ export default function Home() {
                   ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
                   : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
                 }`}>
-                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono">01 · AUDIT</div>
-                <h4 className={`text-sm font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Resilient Log Parsing</h4>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">01 · AUDIT</div>
+                <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Resilient Log Parsing</h4>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   Strict ISO-8601 validation filters raw logs. Gracefully discards corrupt entries while mapping valid fields into clean memory arrays.
                 </p>
               </div>
@@ -1755,9 +1755,9 @@ export default function Home() {
                   ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
                   : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
                 }`}>
-                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono">02 · DETECT</div>
-                <h4 className={`text-sm font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Variance-Protected Baselines</h4>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">02 · DETECT</div>
+                <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Variance-Protected Baselines</h4>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   Computes rolling averages and standard deviations. Safely guards zero-variance baselines with relative increase factors.
                 </p>
               </div>
@@ -1766,9 +1766,9 @@ export default function Home() {
                   ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
                   : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
                 }`}>
-                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono">03 · CLUSTER</div>
-                <h4 className={`text-sm font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Chronological Correlator</h4>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">03 · CLUSTER</div>
+                <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Chronological Correlator</h4>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   Applies sliding-window clusters (120s frames) to aggregate parallel anomalies across different services, identifying upstream triggers.
                 </p>
               </div>
@@ -1777,9 +1777,9 @@ export default function Home() {
                   ? "bg-neutral-950/40 border-neutral-900 hover:border-neutral-800"
                   : "bg-slate-50 border-slate-200 hover:bg-slate-100/50 shadow-sm"
                 }`}>
-                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono">04 · SOLVE</div>
-                <h4 className={`text-sm font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Multi-Model Debugging</h4>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                <div className="text-xs font-bold text-indigo-500 dark:text-indigo-400 font-mono tracking-widest">04 · SOLVE</div>
+                <h4 className={`text-base font-bold ${theme === "dark" ? "text-white" : "text-slate-900"}`}>Multi-Model Debugging</h4>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   Invokes Gemini or Claude for SRE insight. Automatically falls back to localized, context-rich dependency diagnostics if offline.
                 </p>
               </div>
@@ -1789,44 +1789,44 @@ export default function Home() {
 
           {/* Section: Operational Timeline Guide */}
           <div className="mb-20">
-            <h3 className={`text-xl font-bold font-mono text-left mb-6 border-b pb-2 ${theme === "dark" ? "border-neutral-900 text-neutral-300" : "border-slate-100 text-slate-800"
+            <h3 className={`text-2xl font-bold font-mono text-left mb-6 border-b pb-3 ${theme === "dark" ? "border-neutral-900 text-neutral-300" : "border-slate-100 text-slate-800"
               }`}>
               Operator's <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Playbook</span> Workflow
             </h3>
-            <div className={`p-6 rounded-xl border text-left font-mono flex flex-col gap-5 transition-all duration-300 ${theme === "dark" ? "border-neutral-900 bg-neutral-950/20" : "border-slate-150 bg-slate-50/50"
+            <div className={`p-8 rounded-xl border text-left font-mono flex flex-col gap-6 transition-all duration-300 ${theme === "dark" ? "border-neutral-900 bg-neutral-950/20" : "border-slate-150 bg-slate-50/50"
               }`}>
               <div className="flex items-start gap-4">
-                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-sm shrink-0 mt-0.5">STEP 01</span>
+                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 01</span>
                 <div>
-                  <h4 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Load Incident Context</h4>
-                  <p className={`text-xs leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                  <h4 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Load Incident Context</h4>
+                  <p className={`text-sm leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                     Drop a standard JSON logs payload into the active interface, or select one of the sandbox preset configs directly inside the header navbar (Normal, Latency Spike, or Error Rate Spike).
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-sm shrink-0 mt-0.5">STEP 02</span>
+                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 02</span>
                 <div>
                   <h4 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Boot SRE Telemetry Kernel</h4>
-                  <p className={`text-xs leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                  <p className={`text-sm leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                     Hit "Run SRE Diagnostic Loop". The system instantly activates the console logger, kicks off live telemetry graphs, and traces dependencies across node gateway states.
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-sm shrink-0 mt-0.5">STEP 03</span>
+                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 03</span>
                 <div>
                   <h4 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Analyze Consolidated Findings</h4>
-                  <p className={`text-xs leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                  <p className={`text-sm leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                     Review the incident cards generated on the right. Check co-occurring failures, computed baseline comparisons, peak spikes, and detailed root-cause summaries.
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-sm shrink-0 mt-0.5">STEP 04</span>
+                <span className="font-bold text-indigo-500 dark:text-indigo-400 text-xs tracking-widest shrink-0 mt-1">STEP 04</span>
                 <div>
                   <h4 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Complete Actionable playbooks</h4>
-                  <p className={`text-xs leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                  <p className={`text-sm leading-relaxed mt-1.5 font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                     Follow step-by-step investigation action lines. Check off completed checks directly in the UI, and copy specific terminal troubleshooting lines with a single click.
                   </p>
                 </div>
@@ -1839,32 +1839,32 @@ export default function Home() {
               ? "border-neutral-900 bg-neutral-950/20"
               : "border-slate-200 bg-slate-50/50 shadow-sm"
             }`}>
-            <h3 className={`text-xl font-bold font-mono text-left mb-6 border-b pb-2 ${theme === "dark" ? "border-neutral-900 text-neutral-300" : "border-slate-100 text-slate-800"
+            <h3 className={`text-2xl font-bold font-mono text-left mb-6 border-b pb-3 ${theme === "dark" ? "border-neutral-900 text-neutral-300" : "border-slate-100 text-slate-800"
               }`}>
               Frequently Asked <span className="font-display italic font-medium text-indigo-500 dark:text-indigo-400">Questions</span>
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left font-mono">
-              <div className="flex flex-col gap-1.5">
-                <h5 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: How is standard deviation baseline leakage avoided?</h5>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 text-left font-mono">
+              <div className="flex flex-col gap-2">
+                <h5 className={`text-base font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: How is standard deviation baseline leakage avoided?</h5>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   A: Spikes are identified by evaluating logs in isolated intervals. Spikes are immediately segmented and never added back to baseline calculation pools, ensuring thresholds remain highly clean.
                 </p>
               </div>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2">
                 <h5 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: How are downstream dependencies correlated?</h5>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   A: The sliding-window grouper checks timestamp proximity. When a payment-api spike happens within 120s of an auth failure, the kernel aggregates them, highlighting co-dependency.
                 </p>
               </div>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2">
                 <h5 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: Does this require an active network gateway connection?</h5>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   A: No. The offline fallback diagnostics engine operates completely on locally mapped dependency rules, executing with peak efficiency without requiring public key configs.
                 </p>
               </div>
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-2">
                 <h5 className={`text-sm font-bold ${theme === "dark" ? "text-neutral-200" : "text-slate-800"}`}>Q: Can I load high-frequency production payloads?</h5>
-                <p className={`text-xs leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
+                <p className={`text-sm leading-relaxed font-sans ${theme === "dark" ? "text-neutral-500" : "text-slate-550"}`}>
                   A: Absolutely. The backend parsers and sliding-window grouping engines are implemented in highly-efficient O(N log N) formats, capable of evaluating thousands of rows under milliseconds.
                 </p>
               </div>
