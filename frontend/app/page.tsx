@@ -143,7 +143,7 @@ function debounce<T extends (...args: any[]) => void>(func: T, wait: number): (.
 
 export default function Home() {
   // Dark/Light Theme state
-  const [theme, setTheme] = useState<"dark" | "light">("light");
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
   const [isAboutOpen, setIsAboutOpen] = useState(false);
 
   // Cinematic Intro preloader state
