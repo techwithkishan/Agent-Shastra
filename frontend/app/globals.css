@@ -293,3 +293,24 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 200% 200%;
   animation: gradient-shift 6s ease infinite;
 }
+
+/* ------------------------------------------------------------------------------
+   60FPS / 120FPS GPU-ACCELERATED ULTRA SMOOTH CARD TRANSITIONS
+   ------------------------------------------------------------------------------ */
+
+/* Apple-style Instant-Response/Decaying-Out Smooth Transition */
+.sre-smooth-card {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, box-shadow, border-color, background-color;
+  backface-visibility: hidden;
+  transform: translateZ(0); /* Force GPU compositing */
+}
+
+/* Scroll Optimization: Disable heavy off-screen paint cycles */
+#about-section {
+  content-visibility: auto;
+  contain-intrinsic-size: 1200px;
+}
