@@ -48,47 +48,46 @@ def detect_anomalies(logs: list[dict]) -> list[dict]:
             print(f"Warning: Insufficient samples for latency check on '{endpoint}' "
                   f"(got {len(ep_logs)}, need {config.LATENCY_MIN_SAMPLES}). Skipping.")
         else:
-            # We compare the latest request (current) against the preceding window (baseline)
-            # Baseline MUST strictly exclude the current log to prevent future info leakage
-            current_log = ep_logs[-1]
-            current_latency = current_log["latency_ms"]
+            # Split into two halves — to prevent spike from contaminating baseline
+            midpoint = len(ep_logs) // 2
+            older_half = ep_logs[:midpoint]
+            newer_half = ep_logs[midpoint:]
 
-            # Exclude current log from baseline calculations (slice ends at -1)
-            baseline_logs = ep_logs[-config.LATENCY_WINDOW - 1 : -1] if len(ep_logs) > config.LATENCY_WINDOW else ep_logs[:-1]
-            
-            if len(baseline_logs) >= config.LATENCY_MIN_SAMPLES:
-                latencies = [l["latency_ms"] for l in baseline_logs]
-                b_mean = _mean(latencies)
-                b_std = _stdev(latencies, b_mean)
+            older_latencies = [l["latency_ms"] for l in older_half]
+            newer_latencies = [l["latency_ms"] for l in newer_half]
 
-                # Determine threshold
-                if b_std == 0.0:
-                    threshold = b_mean * config.LATENCY_ABSOLUTE_MULT
-                else:
-                    threshold = b_mean + (config.LATENCY_STD_MULTIPLIER * b_std)
+            b_mean = _mean(older_latencies)
+            b_std = _stdev(older_latencies, b_mean)
 
-                if current_latency > threshold:
-                    # Severity based on relative increase to mean
-                    relative_increase = current_latency / b_mean if b_mean > 0 else float('inf')
-                    
+            # Current = peak of the newer half (catches worst case)
+            current_peak = max(newer_latencies)
+            current_log = ep_logs[-1]  # Reference latest log for timestamp
+
+            # Threshold: either std-dev based or absolute multiplier
+            if b_std == 0.0:
+                threshold = b_mean * config.LATENCY_ABSOLUTE_MULT
+            else:
+                threshold = b_mean + (config.LATENCY_STD_MULTIPLIER * b_std)
+
+            if current_peak > threshold:
+                relative_increase = current_peak / b_mean if b_mean > 0 else 0
+                
+                # SRE Safety Guard: Only report anomalies that represent a significant (>=2.0x) increase
+                if relative_increase >= 2.0:
                     if relative_increase >= 10.0:
                         severity = "CRITICAL"
                     elif relative_increase >= 5.0:
                         severity = "HIGH"
-                    elif relative_increase >= 2.0:
-                        severity = "WARNING"
                     else:
                         severity = "WARNING"
 
-                    # affected_count = number of entries exceeding threshold inside evaluation window for same endpoint
-                    evaluation_window = ep_logs[-config.LATENCY_WINDOW:]
-                    affected_count = sum(1 for l in evaluation_window if l["latency_ms"] > threshold)
+                    affected_count = sum(1 for l in newer_half if l["latency_ms"] > threshold)
 
                     anomalies.append({
                         "type": "latency_spike",
                         "endpoint": endpoint,
                         "baseline": round(b_mean, 2),
-                        "current": round(current_latency, 2),
+                        "current": round(current_peak, 2),
                         "severity": severity,
                         "timestamp": current_log["timestamp"],
                         "affected_count": affected_count
