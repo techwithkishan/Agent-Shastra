@@ -12,6 +12,14 @@
   <b>API Anomaly Detection & Root-Cause Resolution Engine</b> — Created by <b>Kishan Kumar</b>
 </p>
 
+<p align="center">
+  🚀 <b>Live Production URL:</b> <a href="https://agent-shastra.onrender.com" target="_blank">https://agent-shastra.onrender.com</a>
+</p>
+
+<p align="center">
+  <i>This website is frontend + backend oriented, seamlessly serving a Next.js interactive UI on top of a powerful Python framework (FastAPI) as a single consolidated service.</i>
+</p>
+
 ---
 
 Microservice incidents generate hundreds of alerts simultaneously. On-call engineers waste time triaging noise instead of fixing root causes.
@@ -206,39 +214,37 @@ The Next.js client acts as an interactive SRE workspace:
 
 ---
 
-## 🚀 Installation & Developer Setup
+## 🚀 Production Deployment & Developer Setup
 
-### ⚡ 2-Minute Quickstart (Unified Host)
-Agent Shastra comes pre-packaged with pre-built production static web assets in the backend repository. **A stranger can get the entire interactive SRE dashboard live in under 2 minutes without installing Node.js or running npm builds!**
+### 🌐 Accessing the Live Agent (Render Host)
+Agent Shastra is fully hosted and running live in a cloud environment! You can instantly run diagnostics, paste JSON logs, and view the 3-level topology dependency maps directly on the live website:
+👉 **[Access the Live Agent on Render](https://agent-shastra.onrender.com)**
 
-Ensure **Python 3.10+** is installed, then run:
-
-```bash
-# 1. Clone the repository
-git clone https://github.com/techwithkishan/Agent-Shastra.git
-cd Agent-Shastra
-
-# 2. Install Python backend requirements
-pip install -r requirements.txt
-
-# 3. Spin up the unified FastAPI server
-python main.py
-```
-*Open your web browser and navigate directly to **`http://localhost:8000`** to access the entire SRE dashboard!*
+This website is **frontend + backend oriented**, hosting a React-based interactive UI layered perfectly over a high-performance **Python (FastAPI) framework** as a single unified cloud microservice.
 
 ---
 
-### 🛠️ Developer Mode (Independent Frontend Dev)
-If you want to modify or edit the React/TypeScript App Router frontend components:
+### 🛠️ Optional Local Running (Offline Dev Mode)
+If you prefer running a localized instance of the SRE pipeline for offline testing:
 
-1. Ensure **Node.js 18+** is installed.
-2. From the project root, navigate to the frontend directory:
+1. **Prerequisites**: Ensure **Python 3.10+** and **Node.js 18+** are installed.
+2. **Backend Server Setup**:
+   ```bash
+   # Clone the repository
+   git clone https://github.com/techwithkishan/Agent-Shastra.git
+   cd Agent-Shastra
+   pip install -r requirements.txt
+   
+   # Spin up the FastAPI server
+   python main.py
+   ```
+3. **Frontend Dashboard Dev**:
    ```bash
    cd frontend
    npm install
    npm run dev
    ```
-3. The hot-reloading development dashboard will be live at **`http://localhost:3000`**, automatically communicating with your backend API on port `8000`.
+   *The development frontend dashboard will run locally and communicate directly with your backend API.*
 
 ---
 
