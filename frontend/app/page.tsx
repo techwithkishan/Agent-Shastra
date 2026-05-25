@@ -26,7 +26,10 @@ import {
   CheckCircle2,
   Shield,
   Award,
-  HelpCircle
+  HelpCircle,
+  Database,
+  Zap,
+  Globe
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import ResultModal from "../components/ResultModal";
@@ -560,6 +563,7 @@ export default function Home() {
   // Custom node state triggers for SRE Topology graph
   const isPaymentFailed = status === "success" && result?.total_incidents > 0 && result.incidents.some((inc: any) => inc.endpoint.includes("payment"));
   const isAuthFailed = status === "success" && result?.total_incidents > 0 && result.incidents.some((inc: any) => inc.endpoint.includes("auth"));
+  const isOrderFailed = status === "success" && result?.total_incidents > 0 && result.incidents.some((inc: any) => inc.endpoint.includes("order") || inc.endpoint.includes("checkout") || inc.endpoint.includes("submit"));
 
   return (
     <>
@@ -1094,84 +1098,235 @@ export default function Home() {
               </div>
 
               {/* Topology SVG Layout */}
-              <div className={`relative flex justify-center items-center h-48 w-full rounded-lg border overflow-hidden transition-all duration-300 ${theme === "dark"
-                  ? "bg-black/10 border-neutral-900/60"
-                  : "bg-slate-50/50 border-slate-200"
+              <div className={`relative group flex justify-center items-center h-72 w-full rounded-lg border overflow-hidden transition-all duration-500 ${theme === "dark"
+                  ? "bg-neutral-950/30 border-neutral-800/80 hover:border-neutral-700/80 hover:shadow-[0_0_25px_rgba(99,102,241,0.04)]"
+                  : "bg-white border-slate-300 hover:border-slate-400 hover:shadow-[0_8px_30px_rgba(0,0,0,0.05)]"
                 }`}>
 
-                <svg className="w-full h-full" viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
-                  {/* Left Connection Line */}
-                  <path d="M 300 45 L 120 135" stroke={isAuthFailed ? "#ef4444" : theme === "dark" ? "#1f1f2e" : "#cbd5e1"} strokeWidth="1.5" fill="none" className={isAuthFailed ? "" : "animate-dash"} />
-                  {/* Middle Connection Line */}
-                  <path d="M 300 45 L 300 135" stroke={isPaymentFailed ? "#ef4444" : theme === "dark" ? "#1f1f2e" : "#cbd5e1"} strokeWidth="1.5" fill="none" className={isPaymentFailed ? "" : "animate-dash"} />
-                  {/* Right Connection Line */}
-                  <path d="M 300 45 L 480 135" stroke={theme === "dark" ? "#1f1f2e" : "#cbd5e1"} strokeWidth="1.5" fill="none" className="animate-dash" />
+                {/* Cyber Corner Ticks / Brackets for Highly Visible Premium SRE Aesthetic */}
+                <div className={`absolute top-0 left-0 w-2.5 h-2.5 border-t border-l transition-all duration-500 ${
+                  isAuthFailed || isPaymentFailed || isOrderFailed
+                    ? "border-red-500/80 scale-110"
+                    : theme === "dark"
+                      ? "border-neutral-700 group-hover:border-indigo-500/60"
+                      : "border-slate-400 group-hover:border-indigo-500/60"
+                }`} />
+                <div className={`absolute top-0 right-0 w-2.5 h-2.5 border-t border-r transition-all duration-500 ${
+                  isAuthFailed || isPaymentFailed || isOrderFailed
+                    ? "border-red-500/80 scale-110"
+                    : theme === "dark"
+                      ? "border-neutral-700 group-hover:border-indigo-500/60"
+                      : "border-slate-400 group-hover:border-indigo-500/60"
+                }`} />
+                <div className={`absolute bottom-0 left-0 w-2.5 h-2.5 border-b border-l transition-all duration-500 ${
+                  isAuthFailed || isPaymentFailed || isOrderFailed
+                    ? "border-red-500/80 scale-110"
+                    : theme === "dark"
+                      ? "border-neutral-700 group-hover:border-indigo-500/60"
+                      : "border-slate-400 group-hover:border-indigo-500/60"
+                }`} />
+                <div className={`absolute bottom-0 right-0 w-2.5 h-2.5 border-b border-r transition-all duration-500 ${
+                  isAuthFailed || isPaymentFailed || isOrderFailed
+                    ? "border-red-500/80 scale-110"
+                    : theme === "dark"
+                      ? "border-neutral-700 group-hover:border-indigo-500/60"
+                      : "border-slate-400 group-hover:border-indigo-500/60"
+                }`} />
 
+                <svg className="w-full h-full" viewBox="0 0 600 280" xmlns="http://www.w3.org/2000/svg">
+                  {/* --- Level 1 to Level 2 Connections --- */}
+                  {/* VPC Gateway to Auth Service */}
+                  <path d="M 300 45 L 100 115" stroke={isAuthFailed ? "#ef4444" : theme === "dark" ? "rgba(34, 197, 94, 0.15)" : "#bbf7d0"} strokeWidth="1.5" fill="none" className={isAuthFailed ? "" : "animate-dash"} />
+                  {/* VPC Gateway to Payment API */}
+                  <path d="M 300 45 L 300 115" stroke={isPaymentFailed ? "#ef4444" : theme === "dark" ? "rgba(34, 197, 94, 0.15)" : "#bbf7d0"} strokeWidth="1.5" fill="none" className={isPaymentFailed ? "" : "animate-dash"} />
+                  {/* VPC Gateway to Order API */}
+                  <path d="M 300 45 L 500 115" stroke={theme === "dark" ? "rgba(34, 197, 94, 0.15)" : "#bbf7d0"} strokeWidth="1.5" fill="none" className="animate-dash" />
+
+                  {/* --- Level 2 to Level 3 Downstream Connections (New detailed level!) --- */}
+                  {/* Auth Service Downstreams */}
+                  <path d="M 100 135 L 50 205" stroke={isAuthFailed ? "#f59e0b" : theme === "dark" ? "rgba(34, 197, 94, 0.12)" : "#d1fae5"} strokeWidth="1.2" fill="none" className={isAuthFailed ? "stroke-dasharray-none" : "animate-dash"} />
+                  <path d="M 100 135 L 150 205" stroke={isAuthFailed ? "#f59e0b" : theme === "dark" ? "rgba(34, 197, 94, 0.12)" : "#d1fae5"} strokeWidth="1.2" fill="none" className={isAuthFailed ? "stroke-dasharray-none" : "animate-dash"} />
+
+                  {/* Payment API Downstreams */}
+                  <path d="M 300 135 L 250 205" stroke={isPaymentFailed ? "#f59e0b" : theme === "dark" ? "rgba(34, 197, 94, 0.12)" : "#d1fae5"} strokeWidth="1.2" fill="none" className={isPaymentFailed ? "stroke-dasharray-none" : "animate-dash"} />
+                  <path d="M 300 135 L 350 205" stroke={isPaymentFailed ? "#f59e0b" : theme === "dark" ? "rgba(34, 197, 94, 0.12)" : "#d1fae5"} strokeWidth="1.2" fill="none" className={isPaymentFailed ? "stroke-dasharray-none" : "animate-dash"} />
+
+                  {/* Order API Downstreams */}
+                  <path d="M 500 135 L 450 205" stroke={isOrderFailed ? "#f59e0b" : theme === "dark" ? "rgba(34, 197, 94, 0.12)" : "#d1fae5"} strokeWidth="1.2" fill="none" className={isOrderFailed ? "stroke-dasharray-none" : "animate-dash"} />
+                  <path d="M 500 135 L 550 205" stroke={isOrderFailed ? "#f59e0b" : theme === "dark" ? "rgba(34, 197, 94, 0.12)" : "#d1fae5"} strokeWidth="1.2" fill="none" className={isOrderFailed ? "stroke-dasharray-none" : "animate-dash"} />
+
+
+                  {/* ==================== LEVEL 1 (CORE INPUT) ==================== */}
                   {/* Central Node: VPC Gateway */}
                   <foreignObject x="252" y="10" width="96" height="85">
                     <div className="flex flex-col items-center justify-center w-full">
-                      <div className={`relative h-10 w-10 rounded-lg border flex items-center justify-center shadow-lg transition-all duration-300 ${theme === "dark"
+                      <div className={`relative h-9 w-9 rounded-lg border flex items-center justify-center shadow-lg transition-all duration-300 ${theme === "dark"
                           ? "bg-indigo-500/10 border-indigo-500/30 text-indigo-400"
                           : "bg-indigo-50 border-indigo-200 text-indigo-600"
                         }`}>
-                        <Server className="h-5 w-5" />
+                        <Server className="h-4.5 w-4.5" />
                         <span className={`absolute -inset-1 rounded-lg border animate-radar-pulse pointer-events-none ${theme === "dark" ? "border-indigo-500/40" : "border-indigo-600/30"
                           }`} />
                       </div>
-                      <span className={`font-mono text-[9px] mt-2 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
+                      <span className={`font-mono text-[8px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
                         }`}>VPC-Gateway</span>
                     </div>
                   </foreignObject>
 
+
+                  {/* ==================== LEVEL 2 (APPLICATION SERVERS) ==================== */}
                   {/* Node 1: Auth Service */}
-                  <foreignObject x="72" y="110" width="96" height="85">
+                  <foreignObject x="52" y="95" width="96" height="85">
                     <div className="flex flex-col items-center justify-center w-full">
-                      <div className={`relative h-10 w-10 rounded-lg flex items-center justify-center shadow-lg transition-colors duration-300 border ${isAuthFailed
+                      <div className={`relative h-9 w-9 rounded-lg flex items-center justify-center shadow-lg transition-colors duration-300 border ${isAuthFailed
                           ? "bg-red-500/10 border-red-500/40 text-red-400"
                           : theme === "dark"
-                            ? "bg-neutral-900 border-neutral-800 text-neutral-500"
-                            : "bg-slate-100 border-slate-200 text-slate-400"
+                            ? "bg-neutral-900 border-neutral-800 text-neutral-400"
+                            : "bg-slate-50 border-slate-200 text-slate-500"
                         }`}>
-                        <Cpu className="h-5 w-5" />
+                        <Cpu className="h-4.5 w-4.5" />
                         {isAuthFailed && (
                           <span className="absolute -inset-1 rounded-lg border border-red-500/40 animate-radar-pulse pointer-events-none" />
                         )}
                       </div>
-                      <span className={`font-mono text-[9px] mt-2 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
+                      <span className={`font-mono text-[8px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
                         }`}>auth-service</span>
                     </div>
                   </foreignObject>
 
                   {/* Node 2: Payment API */}
-                  <foreignObject x="252" y="110" width="96" height="85">
+                  <foreignObject x="252" y="95" width="96" height="85">
                     <div className="flex flex-col items-center justify-center w-full">
-                      <div className={`relative h-10 w-10 rounded-lg flex items-center justify-center shadow-lg transition-colors duration-300 border ${isPaymentFailed
+                      <div className={`relative h-9 w-9 rounded-lg flex items-center justify-center shadow-lg transition-colors duration-300 border ${isPaymentFailed
                           ? "bg-red-500/10 border-red-500/40 text-red-400"
                           : theme === "dark"
-                            ? "bg-neutral-900 border-neutral-800 text-neutral-500"
-                            : "bg-slate-100 border-slate-200 text-slate-400"
+                            ? "bg-neutral-900 border-neutral-800 text-neutral-400"
+                            : "bg-slate-50 border-slate-200 text-slate-500"
                         }`}>
-                        <Cpu className="h-5 w-5" />
+                        <Cpu className="h-4.5 w-4.5" />
                         {isPaymentFailed && (
                           <span className="absolute -inset-1 rounded-lg border border-red-500/40 animate-radar-pulse pointer-events-none" />
                         )}
                       </div>
-                      <span className={`font-mono text-[9px] mt-2 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
+                      <span className={`font-mono text-[8px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
                         }`}>payment-api</span>
                     </div>
                   </foreignObject>
 
                   {/* Node 3: Order API */}
-                  <foreignObject x="432" y="110" width="96" height="85">
+                  <foreignObject x="452" y="95" width="96" height="85">
                     <div className="flex flex-col items-center justify-center w-full">
-                      <div className={`relative h-10 w-10 rounded-lg border flex items-center justify-center text-neutral-500 shadow-lg transition-colors duration-300 ${theme === "dark"
-                          ? "bg-neutral-900 border-neutral-800"
-                          : "bg-slate-100 border-slate-200"
+                      <div className={`relative h-9 w-9 rounded-lg flex items-center justify-center shadow-lg transition-colors duration-300 border ${isOrderFailed
+                          ? "bg-red-500/10 border-red-500/40 text-red-400"
+                          : theme === "dark"
+                            ? "bg-neutral-900 border-neutral-800 text-neutral-400"
+                            : "bg-slate-50 border-slate-200 text-slate-500"
                         }`}>
-                        <Cpu className="h-5 w-5" />
+                        <Cpu className="h-4.5 w-4.5" />
+                        {isOrderFailed && (
+                          <span className="absolute -inset-1 rounded-lg border border-red-500/40 animate-radar-pulse pointer-events-none" />
+                        )}
                       </div>
-                      <span className={`font-mono text-[9px] mt-2 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
+                      <span className={`font-mono text-[8px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-400" : "text-slate-550"
                         }`}>order-api</span>
+                    </div>
+                  </foreignObject>
+
+
+                  {/* ==================== LEVEL 3 (DATABASES & GATEWAYS) ==================== */}
+                  {/* Auth Downstream 1: auth-db */}
+                  <foreignObject x="2" y="185" width="96" height="85">
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <div className={`relative h-8 w-8 rounded-lg border flex items-center justify-center shadow-md transition-colors duration-300 ${isAuthFailed
+                          ? "bg-amber-500/5 border-amber-500/35 text-amber-500/80"
+                          : theme === "dark"
+                            ? "bg-neutral-950/60 border-neutral-850 text-neutral-500"
+                            : "bg-slate-100 border-slate-200/80 text-slate-400"
+                        }`}>
+                        <Database className="h-4 w-4" />
+                      </div>
+                      <span className={`font-mono text-[7px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-500" : "text-slate-400"
+                        }`}>auth-db</span>
+                    </div>
+                  </foreignObject>
+
+                  {/* Auth Downstream 2: user-cache (Redis) */}
+                  <foreignObject x="102" y="185" width="96" height="85">
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <div className={`relative h-8 w-8 rounded-lg border flex items-center justify-center shadow-md transition-colors duration-300 ${isAuthFailed
+                          ? "bg-amber-500/5 border-amber-500/35 text-amber-500/80"
+                          : theme === "dark"
+                            ? "bg-neutral-950/60 border-neutral-850 text-neutral-500"
+                            : "bg-slate-100 border-slate-200/80 text-slate-400"
+                        }`}>
+                        <Zap className="h-4 w-4" />
+                      </div>
+                      <span className={`font-mono text-[7px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-500" : "text-slate-400"
+                        }`}>user-cache</span>
+                    </div>
+                  </foreignObject>
+
+                  {/* Payment Downstream 1: payment-db */}
+                  <foreignObject x="202" y="185" width="96" height="85">
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <div className={`relative h-8 w-8 rounded-lg border flex items-center justify-center shadow-md transition-colors duration-300 ${isPaymentFailed
+                          ? "bg-amber-500/5 border-amber-500/35 text-amber-500/80"
+                          : theme === "dark"
+                            ? "bg-neutral-950/60 border-neutral-850 text-neutral-500"
+                            : "bg-slate-100 border-slate-200/80 text-slate-400"
+                        }`}>
+                        <Database className="h-4 w-4" />
+                      </div>
+                      <span className={`font-mono text-[7px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-500" : "text-slate-400"
+                        }`}>payment-db</span>
+                    </div>
+                  </foreignObject>
+
+                  {/* Payment Downstream 2: stripe-gateway */}
+                  <foreignObject x="302" y="185" width="96" height="85">
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <div className={`relative h-8 w-8 rounded-lg border flex items-center justify-center shadow-md transition-colors duration-300 ${isPaymentFailed
+                          ? "bg-amber-500/5 border-amber-500/35 text-amber-500/80 animate-pulse"
+                          : theme === "dark"
+                            ? "bg-neutral-950/60 border-neutral-850 text-neutral-500"
+                            : "bg-slate-100 border-slate-200/80 text-slate-400"
+                        }`}>
+                        <Globe className="h-4 w-4" />
+                      </div>
+                      <span className={`font-mono text-[7px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-500" : "text-slate-400"
+                        }`}>stripe-api</span>
+                    </div>
+                  </foreignObject>
+
+                  {/* Order Downstream 1: order-db */}
+                  <foreignObject x="402" y="185" width="96" height="85">
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <div className={`relative h-8 w-8 rounded-lg border flex items-center justify-center shadow-md transition-colors duration-300 ${isOrderFailed
+                          ? "bg-amber-500/5 border-amber-500/35 text-amber-500/80"
+                          : theme === "dark"
+                            ? "bg-neutral-950/60 border-neutral-850 text-neutral-500"
+                            : "bg-slate-100 border-slate-200/80 text-slate-400"
+                        }`}>
+                        <Database className="h-4 w-4" />
+                      </div>
+                      <span className={`font-mono text-[7px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-500" : "text-slate-400"
+                        }`}>order-db</span>
+                    </div>
+                  </foreignObject>
+
+                  {/* Order Downstream 2: message-queue (RabbitMQ) */}
+                  <foreignObject x="502" y="185" width="96" height="85">
+                    <div className="flex flex-col items-center justify-center w-full">
+                      <div className={`relative h-8 w-8 rounded-lg border flex items-center justify-center shadow-md transition-colors duration-300 ${isOrderFailed
+                          ? "bg-amber-500/5 border-amber-500/35 text-amber-500/80 animate-pulse"
+                          : theme === "dark"
+                            ? "bg-neutral-950/60 border-neutral-850 text-neutral-500"
+                            : "bg-slate-100 border-slate-200/80 text-slate-400"
+                        }`}>
+                        <RefreshCw className="h-4 w-4 text-neutral-550" />
+                      </div>
+                      <span className={`font-mono text-[7px] mt-1.5 transition-colors duration-300 ${theme === "dark" ? "text-neutral-500" : "text-slate-400"
+                        }`}>message-queue</span>
                     </div>
                   </foreignObject>
                 </svg>
