@@ -240,12 +240,11 @@ python test_detector.py
 
 ## Known Limitations
 
-- Optimized for structured JSON telemetry input.
-- Root cause diagnostics are advisory and should not replace production observability tooling.
-- Historical recovered incidents may intentionally not trigger alerts.
-- Topology visualization operates at service abstraction level.
-- The system explains incidents but does not modify infrastructure automatically.
-- Designed to remain operational during network interruptions and unavailable AI providers, though no system guarantees absolute resilience under all failure conditions.
+- **Log Stream Truncation (Odd Counts < 20)**: When an endpoint's total telemetry log count is odd and below 20 requests, the clean 50/50 window split uses integer division (e.g., $19 // 2 = 9$ requests). This inherently drops the very first (oldest) log entry from both baseline and evaluation windows.
+- **Historically Recovered Incidents**: Anomaly spikes that occurred historically at the very beginning of the log stream and fully recovered prior to the recent evaluation window will not be flagged. This is a fundamental limitation of localized sliding-window systems, as the agent is designed to prioritize active or recently ongoing failures over historical ones.
+- **Observability Scope**: The system provides advisory root-cause diagnostics and checklists; it does not replace comprehensive time-series APM platforms or modify production infrastructure automatically.
+- **Input Constrains**: Optimized specifically for structured JSON telemetry arrays. Highly malformed rows are audited and skipped gracefully.
+
 
 ---
 

@@ -21,6 +21,18 @@ def _stdev(data: list[float], mean_val: float) -> float:
     variance = sum((x - mean_val) ** 2 for x in data) / (n - 1)
     return math.sqrt(variance)
 
+def _compute_window_size(total_logs: int) -> int:
+    """Calculates an adaptive window size proportional to the log volume."""
+    if total_logs < 20:
+        return total_logs // 2
+    if total_logs < 100:
+        return config.WINDOW_TIER_S
+    if total_logs < 500:
+        return config.WINDOW_TIER_M
+    if total_logs < 2000:
+        return config.WINDOW_TIER_L
+    return config.WINDOW_TIER_XL
+
 def detect_anomalies(logs: list[dict]) -> list[dict]:
     """Scans log entries for latency spikes and error rate spikes per endpoint.
 
@@ -48,26 +60,36 @@ def detect_anomalies(logs: list[dict]) -> list[dict]:
             print(f"Warning: Insufficient samples for latency check on '{endpoint}' "
                   f"(got {len(ep_logs)}, need {config.LATENCY_MIN_SAMPLES}). Skipping.")
         else:
-            # Split into two halves — to prevent spike from contaminating baseline
-            midpoint = len(ep_logs) // 2
-            older_half = ep_logs[:midpoint]
-            newer_half = ep_logs[midpoint:]
-
-            older_latencies = [l["latency_ms"] for l in older_half]
-            newer_latencies = [l["latency_ms"] for l in newer_half]
-
-            b_mean = _mean(older_latencies)
-            b_std = _stdev(older_latencies, b_mean)
-
-            # Current = peak of the newer half (catches worst case)
-            current_peak = max(newer_latencies)
-            current_log = ep_logs[-1]  # Reference latest log for timestamp
-
-            # Threshold: either std-dev based or absolute multiplier
-            if b_std == 0.0:
-                threshold = b_mean * config.LATENCY_ABSOLUTE_MULT
+            # SRE Fixed-Recent, Adaptive-Baseline Windowing
+            if len(ep_logs) < 20:
+                eval_size = len(ep_logs) // 2
+                current_window = ep_logs[-eval_size:]
+                baseline_window = ep_logs[:-eval_size]
             else:
-                threshold = b_mean + (config.LATENCY_STD_MULTIPLIER * b_std)
+                window_size = _compute_window_size(len(ep_logs))
+                eval_size = 10
+                current_window = ep_logs[-eval_size:]
+                baseline_window = ep_logs[-window_size:-eval_size]
+
+            current_latencies = [l["latency_ms"] for l in current_window]
+            current_peak = max(current_latencies)
+            current_log = ep_logs[-1]
+
+            if len(baseline_window) >= 2:
+                baseline_latencies = [l["latency_ms"] for l in baseline_window]
+                b_mean = _mean(baseline_latencies)
+                b_std = _stdev(baseline_latencies, b_mean)
+
+                # Threshold: either std-dev based or absolute multiplier
+                if b_std == 0.0:
+                    threshold = b_mean * config.LATENCY_ABSOLUTE_MULT
+                else:
+                    threshold = b_mean + (config.LATENCY_STD_MULTIPLIER * b_std)
+            else:
+                # Fallback: Not enough baseline history — use absolute multiplier on current mean
+                b_mean = _mean(current_latencies)
+                b_std = 0.0
+                threshold = b_mean * config.LATENCY_ABSOLUTE_MULT
 
             if current_peak > threshold:
                 relative_increase = current_peak / b_mean if b_mean > 0 else 0
@@ -81,7 +103,7 @@ def detect_anomalies(logs: list[dict]) -> list[dict]:
                     else:
                         severity = "WARNING"
 
-                    affected_count = sum(1 for l in newer_half if l["latency_ms"] > threshold)
+                    affected_count = sum(1 for l in current_window if l["latency_ms"] > threshold)
 
                     anomalies.append({
                         "type": "latency_spike",
@@ -99,27 +121,32 @@ def detect_anomalies(logs: list[dict]) -> list[dict]:
         if len(ep_logs) < config.ERROR_MIN_SAMPLES:
             pass
         else:
-            window = ep_logs[-config.ERROR_WINDOW:]
+            # SRE Fixed-Recent, Adaptive-Baseline Windowing
+            if len(ep_logs) < 20:
+                eval_size = len(ep_logs) // 2
+                current_window = ep_logs[-eval_size:]
+                baseline_window = ep_logs[:-eval_size]
+            else:
+                window_size = _compute_window_size(len(ep_logs))
+                eval_size = 10
+                current_window = ep_logs[-eval_size:]
+                baseline_window = ep_logs[-window_size:-eval_size]
+                
             current_log = ep_logs[-1]
 
-            baseline_window = window[:-10]
-            current_window = window[-10:]
-
-            # If we don't have enough baseline history, we still evaluate absolute error rate
-            baseline_errors = sum(1 for l in baseline_window if int(l["status"]) >= 500) if len(baseline_window) > 0 else 0
             current_errors = sum(1 for l in current_window if int(l["status"]) >= 500)
-
-            baseline_rate = (baseline_errors / len(baseline_window)) if len(baseline_window) > 0 else 0.0
             current_rate = current_errors / len(current_window)
 
-            is_spike = False
-            if len(baseline_window) >= 5:
+            if len(baseline_window) >= config.ERROR_MIN_SAMPLES:
+                baseline_errors = sum(1 for l in baseline_window if int(l["status"]) >= 500)
+                baseline_rate = baseline_errors / len(baseline_window)
                 is_spike = (
                     current_rate > config.ERROR_RATE_THRESHOLD or
                     current_rate > (baseline_rate + config.ERROR_RATE_DELTA)
                 )
             else:
-                # With under-sampled baseline, trigger strictly on the absolute error threshold
+                # Not enough history for baseline comparison - fall back to absolute threshold strictly
+                baseline_rate = 0.0
                 is_spike = current_rate > config.ERROR_RATE_THRESHOLD
 
             if is_spike:
@@ -143,3 +170,4 @@ def detect_anomalies(logs: list[dict]) -> list[dict]:
                 })
 
     return anomalies
+
