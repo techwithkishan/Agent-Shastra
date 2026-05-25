@@ -68,6 +68,42 @@ Upload or paste structured JSON API telemetry logs. Each entry must include:
 
 ---
 
+## 📋 Example Output (`alert.json`)
+
+When anomalies are detected and grouped, the pipeline generates a structured, machine-readable `alert.json` report in the root directory:
+
+```json
+{
+  "alert_id": "2026-05-25-001",
+  "generated_at": "2026-05-25T06:30:15Z",
+  "total_incidents": 1,
+  "severity": "CRITICAL",
+  "incidents": [
+    {
+      "group_id": "8f9b2d3c4e",
+      "endpoint": "/payment/process",
+      "failure_type": "latency_spike",
+      "severity": "CRITICAL",
+      "occurrences": 3,
+      "first_seen": "2024-06-15T10:00:00Z",
+      "last_seen": "2024-06-15T10:02:00Z",
+      "baseline_ms": 100.5,
+      "peak_ms": 2500.0,
+      "likely_causes": [
+        "Likely: database connection pool exhaustion — check active connections",
+        "Likely: slow query or lock contention — review recent slow query logs"
+      ],
+      "recommended_actions": [
+        "Scale database connection pool limits or kill long-running transactions",
+        "Verify Slow Query Logs in PostgreSQL/MySQL and check database CPU usage"
+      ]
+    }
+  ]
+}
+```
+
+---
+
 ## 🛠️ Tech Stack
 
 ### 🐍 Backend (Python 3.10+)
@@ -172,28 +208,37 @@ The Next.js client acts as an interactive SRE workspace:
 
 ## 🚀 Installation & Developer Setup
 
-### 1. Prerequisites
-Ensure **Python 3.10+** and **Node.js 18+** are installed.
+### ⚡ 2-Minute Quickstart (Unified Host)
+Agent Shastra comes pre-packaged with pre-built production static web assets in the backend repository. **A stranger can get the entire interactive SRE dashboard live in under 2 minutes without installing Node.js or running npm builds!**
 
-### 2. Backend Setup
+Ensure **Python 3.10+** is installed, then run:
+
 ```bash
+# 1. Clone the repository
+git clone https://github.com/techwithkishan/Agent-Shastra.git
 cd Agent-Shastra
 
+# 2. Install Python backend requirements
 pip install -r requirements.txt
 
+# 3. Spin up the unified FastAPI server
 python main.py
 ```
-*FastAPI server starts at `http://127.0.0.1:8000`.*
+*Open your web browser and navigate directly to **`http://localhost:8000`** to access the entire SRE dashboard!*
 
-### 3. Frontend Setup
-```bash
-cd frontend
+---
 
-npm install
+### 🛠️ Developer Mode (Independent Frontend Dev)
+If you want to modify or edit the React/TypeScript App Router frontend components:
 
-npm run dev
-```
-*Dashboard is live at `http://localhost:3000`.*
+1. Ensure **Node.js 18+** is installed.
+2. From the project root, navigate to the frontend directory:
+   ```bash
+   cd frontend
+   npm install
+   npm run dev
+   ```
+3. The hot-reloading development dashboard will be live at **`http://localhost:3000`**, automatically communicating with your backend API on port `8000`.
 
 ---
 
